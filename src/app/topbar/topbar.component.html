@@ -1,0 +1,24 @@
+<div class="layout-topbar">
+  <a class="layout-topbar-logo" routerLink="">
+    <!-- <img src="assets/layout/images/{{layoutService.config().colorScheme === 'light' ? 'logo-dark' : 'logo-white'}}.svg" alt="logo"> -->
+    <span>Chatbots</span>
+  </a>
+
+  <div #topbarmenu class="layout-topbar-menu">
+    <p-menu #menu [popup]="true" [model]="menuItems">
+      <ng-template pTemplate="start">
+        <button pRipple class="relative overflow-hidden w-full p-link flex align-items-center p-2 pl-3 text-color hover:surface-200 border-noround">
+          <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" class="mr-2" shape="circle" />
+          <span class="inline-flex flex-column">
+            <span class="font-bold">Amy Elsner</span>
+            <span class="text-sm">Admin</span>
+          </span>
+        </button>
+      </ng-template>
+    </p-menu>
+    <button class="p-link layout-topbar-button" (click)="menu.toggle($event)">
+      <i class="pi pi-user"></i>
+      <span>Profile</span>
+    </button>
+  </div>
+</div>

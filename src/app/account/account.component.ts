@@ -11,5 +11,7 @@ import { ButtonModule } from 'primeng/button';
   styleUrl: './account.component.scss'
 })
 export class AccountComponent {
+  updateUser() {
 
+  }
 }

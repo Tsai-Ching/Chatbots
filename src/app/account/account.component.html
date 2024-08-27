@@ -7,18 +7,18 @@
 
           <div class="formgroup-inline">
             <input class="email" pInputText id="firstname1" type="text" placeholder="Firstname" />
-            <button pButton label="Submit"></button>
+            <button pButton label="Update" (click)="updateUser()"></button>
           </div>
           <small>Please enter the email address you want to use to sign in with.</small>
 
       </div>
 
       <div class="card">
-        <h4>Display Name</h4>
-        <div class="field p-fluid">
+        <div class="formgroup-inline">
           <input pInputText id="username" type="text" />
-          <small>Enter your full name or a comfortable display name.</small>
+          <button pButton label="Update" (click)="updateUser()"></button>
         </div>
+        <small>Enter your full name or a comfortable display name.</small>
       </div>
 
       <div class="card">

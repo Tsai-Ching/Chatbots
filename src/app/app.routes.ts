@@ -4,11 +4,13 @@ import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { authGuard } from './auth/auth.guard';
 import { AccountComponent } from './account/account.component';
+import { ResetPwdComponent } from './reset-pwd/reset-pwd.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard]},
-  { path: 'account', component: AccountComponent}
+  { path: 'account', component: AccountComponent},
+  { path: 'password-reset', component: ResetPwdComponent}
 ];

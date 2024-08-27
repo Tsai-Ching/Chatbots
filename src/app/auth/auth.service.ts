@@ -39,4 +39,14 @@ export class AuthService {
     if (!token) return false;
     return true;
   }
+
+  resetPassword(data: { current_password: string; new_password: string; name: string }, verifyCode: string) {
+    return this.#httpClient.put<any>(`${this.baseUrl}/api/v1/users/`,
+    {password:data.current_password,confirmPassword:data.new_password, name:data.name},
+    {
+      headers: {
+        'Authorization': 'Bearer ' + verifyCode,
+      }
+    });
+  }
 }

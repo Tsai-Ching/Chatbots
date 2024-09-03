@@ -18,15 +18,19 @@ export class AuthService {
   constructor() { }
 
   register(data: RegisterEntity) {
-    return this.#httpClient.post(`${this.baseUrl}/api/v1/users/`, data);
+    console.log(data);
+
+    return this.#httpClient.post(`${this.baseUrl}/api/v1/users/register`, data);
   }
 
-  login(loginEntity: LoginEntity): Observable<{accessToken: string, refreshToken: string, message: string}> {
-    return this.#httpClient.post<any>(`${this.baseUrl}/api/v1/auth/login`,
-      `username=${loginEntity.username}&password=${encodeURIComponent(loginEntity.password)}&grant_type=password`
+  login(loginEntity: LoginEntity): Observable<{access_token: string, refresh_token: string, token_type: string}> {
+    return this.#httpClient.post<any>(`${this.baseUrl}/api/v1/users/auth/jwt/login`,
+      `username=${loginEntity.email}&password=${encodeURIComponent(loginEntity.password)}&grant_type=password`
       , {headers: { 'Content-Type': 'application/x-www-form-urlencoded' }})
       .pipe(tap((result) => {
-        this.#cookieService.set('token', result.accessToken);
+        this.#cookieService.set('token', result.access_token);
+        console.log(this.#cookieService.get('token'));
+
       }));
   }
 
@@ -40,13 +44,18 @@ export class AuthService {
     return true;
   }
 
-  resetPassword(data: { current_password: string; new_password: string; name: string }, verifyCode: string) {
+  resetPassword(data: { current_password: string; new_password: string; name: string }) {
+
     return this.#httpClient.put<any>(`${this.baseUrl}/api/v1/users/`,
-    {password:data.current_password,confirmPassword:data.new_password, name:data.name},
+    {current_password:data.current_password,new_password:data.new_password, name:data.name},
     {
       headers: {
-        'Authorization': 'Bearer ' + verifyCode,
+        'Authorization': 'Bearer ' + this.#cookieService.get('token'),
       }
     });
+  }
+
+  getGoogleLoginUrl() {
+    return this.#httpClient.get<string>(`${this.baseUrl}/api/v1/users/auth/google/authorize`)
   }
 }

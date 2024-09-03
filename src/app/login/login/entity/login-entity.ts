@@ -1,4 +1,4 @@
 export class LoginEntity {
-  username: string = '';
+  email: string = '';
   password: string = '';
 }

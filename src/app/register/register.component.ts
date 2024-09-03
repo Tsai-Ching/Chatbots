@@ -2,18 +2,20 @@ import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { LayoutService } from '../layout/service/app.layout.service';
 import { CheckboxModule } from 'primeng/checkbox';
 import { PasswordModule } from 'primeng/password';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, NgForm, Validators } from '@angular/forms';
 import { AuthService } from '../auth/auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterEntity } from './entity/register.entity';
 import { RippleModule } from 'primeng/ripple';
 import { ButtonModule } from 'primeng/button';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import {MessageModule} from 'primeng/message';
 import { CommonModule } from '@angular/common';
 import { DividerModule } from 'primeng/divider';
 import { GoogleSigninButtonModule, SocialAuthService } from "@abacritt/angularx-social-login";
 import { SocialUser } from "@abacritt/angularx-social-login";
+import { InputTextModule } from 'primeng/inputtext';
+import { passwordValidator } from '../Validator';
 
 @Component({
   selector: 'app-register',
@@ -28,7 +30,10 @@ import { SocialUser } from "@abacritt/angularx-social-login";
     MessageModule,
     CommonModule,
     DividerModule,
-    GoogleSigninButtonModule
+    GoogleSigninButtonModule,
+    RouterModule,
+    InputTextModule,
+    ReactiveFormsModule,
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
@@ -39,30 +44,25 @@ export class RegisterComponent implements OnInit {
   router = inject(Router);
   socialAuthService = inject(SocialAuthService);
 
+  registerForm: FormGroup;
   registerData: RegisterEntity = new RegisterEntity();
-  @ViewChild('form', { static: false }) form!: NgForm;
+
   isRegisterFailed: boolean = false;
   errorMessage: string = "";
 
-  user: SocialUser = new SocialUser();
-  loggedInWithGoogle: boolean = false;
-
-  constructor(public layoutService: LayoutService) { }
-
-  ngOnInit() {
-    this.socialAuthService.authState.subscribe((user) => {
-      console.log(user);
-
-      this.user = user;
-      this.loggedInWithGoogle = (user != null);
-      console.log(this.loggedInWithGoogle);
+  constructor() {
+    this.registerForm = new FormGroup({
+      email: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required, Validators.minLength(9), passwordValidator()]),
     });
   }
 
+  ngOnInit() {}
+
   public onSubmit() {
-    if (this.form.valid) {
-      console.log(this.form.value);
-      this.authService.register(this.form.value)
+    if (this.registerForm.valid) {
+      console.log(this.registerForm.value);
+      this.authService.register(this.registerForm.value)
         .subscribe({
           next: (data: any) => {
             console.log(data);

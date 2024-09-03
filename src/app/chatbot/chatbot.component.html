@@ -1,0 +1,47 @@
+<p-tabMenu [model]="items" styleclass="w-full" />
+<div class="py-5 flex justify-content-center">
+  <div class="w-9">
+    <div class="flex justify-content-between my-4">
+      <div class="text-center">
+        <h1 class="text-900 font-bold text-4xl lg:text-5xl mb-2">playground</h1>
+      </div>
+    </div>
+
+    <div class="block-section flex">
+
+      <p-toggleButton onIcon="pi pi-bars" offIcon="pi pi-bars" onLabel="" offLabel=""
+      [(ngModel)]="formVisible"></p-toggleButton>
+      <!-- 左邊設定視窗 -->
+      <div class="col-6" [class.close]="!formVisible">
+
+
+        <div class="form-container" *ngIf="formVisible">
+          <form>
+
+          </form>
+        </div>
+      </div>
+
+      <!-- 右邊聊天室 -->
+      <div [class.justify-content-end]="formVisible" [class.justify-content-center]="!formVisible"
+        class="chat-container w-full">
+
+        <p-card class="chat-card w-full">
+          <h5>這裡放聊天機器人名稱</h5>
+          <p-divider class="w-full bg-surface-200"></p-divider>
+          <div class="chat-window">
+            <p>Chat messages go here...</p>
+          </div>
+          <div class="chat-input mt-7">
+            <input class="w-full mr-2" type="text" [(ngModel)]="message" pInputText placeholder="Type a message" />
+            <button pButton label="Sent" style="background-color: var(--primary-color)" icon="pi pi-send" (click)="sentMsg()"></button>
+          </div>
+        </p-card>
+
+      </div>
+
+
+    </div>
+
+  </div>
+</div>

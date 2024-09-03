@@ -1,0 +1,15 @@
+:host {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.main-layout {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+::ng-deep .p-tabmenu-nav {
+  justify-content: center;
+}

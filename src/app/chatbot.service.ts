@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { ChatbotConfig } from './create-chatbot/entity/chatbt-entity';
-import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +8,6 @@ import { CookieService } from 'ngx-cookie-service';
 export class ChatbotService {
   #httpClient = inject(HttpClient)
   baseUrl = 'https://chatsource-api.onrender.com';
-  #cookieService = inject(CookieService)
 
 
   constructor() { }
@@ -30,10 +28,6 @@ export class ChatbotService {
       4. Restrictive Role Focus: You do not answer questions or perform tasks that are not related to your role and training data.
       `
     }
-    return this.#httpClient.post(`${this.baseUrl}/api/v1/chatbots/`, data,{
-      headers: {
-        'Authorization': 'Bearer ' + this.#cookieService.get('token')
-      }
-    });
+    return this.#httpClient.post(`${this.baseUrl}/api/v1/chatbots/`, data);
   }
 }

@@ -19,6 +19,8 @@ export class OAuthCallbackComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       const query = this.route.snapshot.queryParams;
+      console.log('query',query);
+
       this.authService.redirectToLogin(query).subscribe({
         next: (data: any) => {
           console.log(data);

@@ -82,11 +82,7 @@ export class AuthService {
     const authuser = query['authuser'];
     const prompt = query['prompt'];
 
-    const callbackUrl = `/api/v1/users/auth/google/callback?state=${state}&code=${code}&scope=${scope}&authuser=${authuser}0&prompt=${prompt}`;
-    console.log(callbackUrl);
-    console.log(this.#httpClient.get(callbackUrl));
-
-
+    const callbackUrl = `${this.baseUrl}/api/v1/users/auth/google/callback?state=${state}&code=${code}&scope=${scope}&authuser=${authuser}0&prompt=${prompt}`;
 
     return this.#httpClient.get(callbackUrl);
   }

@@ -19,24 +19,24 @@ export class OAuthCallbackComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       const query = this.route.snapshot.queryParams;
-      console.log('query',query);
 
-      this.authService.redirectToLogin(query).subscribe({
+      this.redirectToLogin(query).subscribe({
         next: (data: any) => {
           console.log(data);
 
           localStorage.setItem('token', data.access_token);
-          this.router.navigate(['/']);
+          // this.router.navigate(['/']);
         },
         error: (err) => {
           console.error('Error handling OAuth:', err);
-          this.router.navigate(['/login']);
+          // this.router.navigate(['/login']);
         }
       });
     });
   }
 
   redirectToLogin(query: Params) {
-    this.authService.redirectToLogin(query);
+    console.log('呼叫服務');
+    return this.authService.redirectToLogin(query);
   }
 }

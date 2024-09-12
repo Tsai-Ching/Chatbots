@@ -24,6 +24,7 @@ export class AuthService {
     return this.#httpClient.post(`${this.baseUrl}/api/v1/users/register`, data);
   }
 
+  /** 一般登入 */
   login(loginEntity: LoginEntity): Observable<{access_token: string, refresh_token: string, token_type: string}> {
 
     return this.#httpClient.post<any>(`${this.baseUrl}/api/v1/users/auth/jwt/login`,
@@ -66,12 +67,24 @@ export class AuthService {
   }
 
   getGoogleLoginUrl() {
-    return this.#httpClient.get<string>(`${this.baseUrl}/api/v1/users/auth/google/authorize`)
+    return this.#httpClient.get<string>(`${this.baseUrl}/api/v1/users/auth/google/authorize`,
+    {
+      headers: {
+      "Content-Type": "application/json"
+      }
+    })
   }
 
   redirectToLogin(query: Params) {
-    const callbackUrl = `/api/v1/users/auth/google/callback?${query}`;
-    // const callbackUrl = `https://chatbots-mix1.onrender.com/oauth-callback?${query}`;
+    const code = query['code'];
+    const state = query['state'];
+    const callbackUrl = `/api/v1/users/auth/google/callback?code=${code}&state=${state}`;
+    console.log(callbackUrl);
+    console.log(this.#httpClient.get(callbackUrl));
+
+
+
     return this.#httpClient.get(callbackUrl);
   }
+
 }

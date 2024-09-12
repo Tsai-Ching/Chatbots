@@ -18,18 +18,14 @@ export class OAuthCallbackComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      const query = this.route.snapshot.queryParams;
-
-      this.redirectToLogin(query).subscribe({
+      this.redirectToLogin(params).subscribe({
         next: (data: any) => {
-          console.log(data);
-
           localStorage.setItem('token', data.access_token);
-          // this.router.navigate(['/']);
+          this.router.navigate(['/dashboard']);
         },
         error: (err) => {
           console.error('Error handling OAuth:', err);
-          // this.router.navigate(['/login']);
+          this.router.navigate(['/login']);
         }
       });
     });

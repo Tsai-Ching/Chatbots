@@ -9,6 +9,7 @@ import { ChatbotManagementComponent } from './chatbot-management/chatbot-managem
 import { CreateChatbotComponent } from './create-chatbot/create-chatbot.component';
 import { ChatbotsComponent } from './chatbots/chatbots.component';
 import { ChatbotComponent } from './chatbot/chatbot.component';
+import { OAuthCallbackComponent } from './o-auth-callback/o-auth-callback.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -36,4 +37,5 @@ export const routes: Routes = [
   },
   { path: 'account', component: AccountComponent },
   { path: 'password-reset', component: ResetPwdComponent },
+  { path: 'oauth-callback', component: OAuthCallbackComponent },
 ];

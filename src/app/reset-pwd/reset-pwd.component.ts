@@ -29,9 +29,9 @@ export class ResetPwdComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (!this.#authService.isLoggedIn()) {
-      this.router.navigateByUrl('/login');
-    }
+    // if (!this.#authService.isLoggedIn()) {
+    //   this.router.navigateByUrl('/login');
+    // }
   }
 
 

@@ -2,10 +2,11 @@ import { RegisterEntity } from './../register/entity/register.entity';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { LoginEntity } from '../login/login/entity/login-entity';
 import { CookieService } from 'ngx-cookie-service';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { Params } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -24,29 +25,38 @@ export class AuthService {
   }
 
   login(loginEntity: LoginEntity): Observable<{access_token: string, refresh_token: string, token_type: string}> {
+
     return this.#httpClient.post<any>(`${this.baseUrl}/api/v1/users/auth/jwt/login`,
       `username=${loginEntity.email}&password=${encodeURIComponent(loginEntity.password)}&grant_type=password`
       , {headers: { 'Content-Type': 'application/x-www-form-urlencoded' }})
-      .pipe(tap((result) => {
-        this.#cookieService.set('token', result.access_token);
-        console.log(this.#cookieService.get('token'));
-
-      }));
+      .pipe(
+        tap((result) => {
+          console.log('login successful');
+          this.#cookieService.set('token', result.access_token);
+        }),
+        catchError((error) => {
+          console.error('Login failed:', error);
+          return throwError(error);
+        })
+      );
   }
+
 
   logout() {
     this.#cookieService.delete('token')
   }
 
   isLoggedIn() {
-    const token = this.#cookieService.get('token');
+    console.log(this.#cookieService.getAll());
+
+    const token = this.#cookieService.get('fastapiusersauth');
     if (!token) return false;
     return true;
   }
 
   resetPassword(data: { current_password: string; new_password: string; name: string }) {
 
-    return this.#httpClient.put<any>(`${this.baseUrl}/api/v1/users/`,
+    return this.#httpClient.post<any>(`${this.baseUrl}/api/v1/users/reset-password`,
     {current_password:data.current_password,new_password:data.new_password, name:data.name},
     {
       headers: {
@@ -57,5 +67,11 @@ export class AuthService {
 
   getGoogleLoginUrl() {
     return this.#httpClient.get<string>(`${this.baseUrl}/api/v1/users/auth/google/authorize`)
+  }
+
+  redirectToLogin(query: Params) {
+    const callbackUrl = `/api/v1/users/auth/google/callback?${query}`;
+    // const callbackUrl = `https://chatbots-mix1.onrender.com/oauth-callback?${query}`;
+    return this.#httpClient.get(callbackUrl);
   }
 }

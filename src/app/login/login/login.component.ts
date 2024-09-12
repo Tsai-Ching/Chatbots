@@ -41,15 +41,13 @@ export class LoginComponent implements OnInit{
 
   onSubmit(){
     if(this.loginForm.valid){
-      console.log(this.loginData);
+
       this.authService.login(this.loginData)
       .subscribe((data: any) => {
-        console.log(this.authService.isLoggedIn());
 
         if(this.authService.isLoggedIn()){
           this.router.navigate(['/dashboard']);
         }
-        console.log(data);
       });
     }
   }

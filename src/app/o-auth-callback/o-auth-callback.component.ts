@@ -20,7 +20,6 @@ export class OAuthCallbackComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.redirectToLogin(params).subscribe({
         next: (data: any) => {
-          localStorage.setItem('token', data.access_token);
           this.router.navigate(['/dashboard']);
         },
         error: (err) => {

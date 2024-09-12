@@ -78,13 +78,17 @@ export class AuthService {
   redirectToLogin(query: Params) {
     const code = query['code'];
     const state = query['state'];
-    const callbackUrl = `/api/v1/users/auth/google/callback`;
+    const scope = query['scope'];
+    const authuser = query['authuser'];
+    const prompt = query['prompt'];
+
+    const callbackUrl = `/api/v1/users/auth/google/callback?state=${state}&code=${code}&scope=${scope}&authuser=${authuser}0&prompt=${prompt}`;
     console.log(callbackUrl);
-    console.log(this.#httpClient.get(callbackUrl, query));
+    console.log(this.#httpClient.get(callbackUrl));
 
 
 
-    return this.#httpClient.get(callbackUrl, query);
+    return this.#httpClient.get(callbackUrl);
   }
 
 }

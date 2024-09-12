@@ -79,7 +79,9 @@ export class AuthService {
     const { code, state, scope, authuser, prompt } = query;
     const callbackUrl = `${this.baseUrl}/api/v1/users/auth/google/callback?state=${state}&code=${code}&scope=${scope}&authuser=${authuser}0&prompt=${prompt}`;
 
-    return this.#httpClient.get(callbackUrl);
+    return this.#httpClient.get(callbackUrl,
+      {withCredentials: true}
+    );
   }
 
 }

@@ -1,6 +1,6 @@
 import { RegisterEntity } from './../register/entity/register.entity';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { catchError, tap } from 'rxjs/operators';
 import { LoginEntity } from '../login/login/entity/login-entity';
@@ -78,10 +78,7 @@ export class AuthService {
   redirectToLogin(query: Params) {
     const { code, state, scope, authuser, prompt } = query;
     const callbackUrl = `${this.baseUrl}/api/v1/users/auth/google/callback?state=${state}&code=${code}&scope=${scope}&authuser=${authuser}0&prompt=${prompt}`;
-
-    return this.#httpClient.get(callbackUrl,
-      {withCredentials: true}
-    );
+    return this.#httpClient.get(callbackUrl, {withCredentials: true} );
   }
 
 }

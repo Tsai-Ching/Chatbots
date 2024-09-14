@@ -21,16 +21,4 @@ export class ChatbotsComponent {
     { label: 'Chatbots'},
     { label: 'Settings'},
   ];
-
-  onCreate() {
-    this.chatbotService.createChatBot().subscribe({
-      next: (data: any) => {
-        console.log(data);
-        this.router.navigate(['/chatbot']);
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    });
-  }
 }

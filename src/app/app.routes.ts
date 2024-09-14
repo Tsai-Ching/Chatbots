@@ -31,7 +31,7 @@ export const routes: Routes = [
         path: 'chatbots/chatbot',
         component: ChatbotComponent
       },
-      { path: 'create-chatbot', component: CreateChatbotComponent },
+      { path: 'create-chatbot/:id', component: CreateChatbotComponent },
 
     ]
   },

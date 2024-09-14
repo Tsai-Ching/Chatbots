@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { ChatbotConfig } from './create-chatbot/entity/chatbt-entity';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +29,14 @@ export class ChatbotService {
       `
     }
     return this.#httpClient.post(`${this.baseUrl}/api/v1/chatbots/`, data);
+  }
+
+  sendMessage(robotId: string, message: string): Observable<any> {
+    const requestBody = {
+      id: robotId, // 假設這個是機器人的 id
+      content: message
+    };
+
+    return this.#httpClient.post<any>(`${this.baseUrl}/api/v1/chatbots/query`, requestBody);
   }
 }

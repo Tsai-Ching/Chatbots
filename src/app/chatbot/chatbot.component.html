@@ -30,7 +30,11 @@
           <h5>這裡放聊天機器人名稱</h5>
           <p-divider class="w-full bg-surface-200"></p-divider>
           <div class="chat-window">
-            <p>Chat messages go here...</p>
+            <div *ngFor="let chat of chatMessages">
+              <p [ngClass]="{'user-message': chat.isUser, 'bot-message': !chat.isUser}">
+                {{ chat.content }}
+              </p>
+            </div>
           </div>
           <div class="chat-input mt-7">
             <input class="w-full mr-2" type="text" [(ngModel)]="message" pInputText placeholder="Type a message" />

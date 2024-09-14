@@ -28,7 +28,9 @@ export class ChatbotService {
       4. Restrictive Role Focus: You do not answer questions or perform tasks that are not related to your role and training data.
       `
     }
-    return this.#httpClient.post(`${this.baseUrl}/api/v1/chatbots/create`, data);
+    return this.#httpClient.post(`${this.baseUrl}/api/v1/chatbots/create`, data, {
+      withCredentials: true // 開啟 withCredentials 以攜帶 Cookie
+    });
   }
 
   sendMessage(robotId: string, message: string): Observable<any> {
@@ -37,6 +39,8 @@ export class ChatbotService {
       content: message
     };
 
-    return this.#httpClient.post<any>(`${this.baseUrl}/api/v1/chatbots/query`, requestBody);
+    return this.#httpClient.post<any>(`${this.baseUrl}/api/v1/chatbots/query`, requestBody, {
+      withCredentials: true // 開啟 withCredentials 以攜帶 Cookie
+    });
   }
 }

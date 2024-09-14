@@ -24,7 +24,8 @@ export class OAuthCallbackComponent implements OnInit {
         },
         error: (err) => {
           console.error('Error handling OAuth:', err);
-          this.router.navigate(['/login']);
+          // this.router.navigate(['/login']);
+          this.router.navigate(['/dashboard']);
         }
       });
     });

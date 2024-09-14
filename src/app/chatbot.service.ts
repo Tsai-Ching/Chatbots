@@ -14,10 +14,9 @@ export class ChatbotService {
 
   createChatBot() {
     const data = {
-      "name": "test",
+      "name": "test1",
       "llm": "gemini-1.5-flash",
       "temperature": 0.5,
-      "api_key": "AIzaSyCO5cnE2C3ZyC7EtaWGtnhLVV8RToFsSpc",
       "instruction": `### Role
       - Primary Function: You are an AI chatbot who helps users with their inquiries, issues and requests. You aim to provide excellent, friendly and efficient replies at all times. Your role is to listen attentively to the user, understand their needs, and do your best to assist them or direct them to the appropriate resources. If a question is not clear, ask clarifying questions. Make sure to end your replies with a positive note.
 

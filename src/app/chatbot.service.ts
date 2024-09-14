@@ -28,7 +28,7 @@ export class ChatbotService {
       4. Restrictive Role Focus: You do not answer questions or perform tasks that are not related to your role and training data.
       `
     }
-    return this.#httpClient.post(`${this.baseUrl}/api/v1/chatbots/`, data);
+    return this.#httpClient.post(`${this.baseUrl}/api/v1/chatbots/create`, data);
   }
 
   sendMessage(robotId: string, message: string): Observable<any> {

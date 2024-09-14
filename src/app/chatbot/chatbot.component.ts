@@ -48,7 +48,7 @@ sentMsg() {
   this.chatbotService.sendMessage(this.robotId, this.message).subscribe(
     (response) => {
       // 接收機器人的回應，並顯示在聊天窗口
-      this.chatMessages.push({ content: response.content, isUser: false });
+      this.chatMessages.push({ content: response, isUser: false });
       console.log('回應:', response);
     },
     (error) => {

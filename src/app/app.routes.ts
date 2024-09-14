@@ -28,10 +28,10 @@ export const routes: Routes = [
         // ]
       },
       {
-        path: 'chatbots/chatbot',
+        path: 'chatbots/chatbot/:id',
         component: ChatbotComponent
       },
-      { path: 'create-chatbot/:id', component: CreateChatbotComponent },
+      { path: 'create-chatbot', component: CreateChatbotComponent },
 
     ]
   },

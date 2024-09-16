@@ -9,10 +9,10 @@
         <button pButton label="New Chatbot" [routerLink]="['/dashboard/create-chatbot']" class="block"></button>
       </div>
     </div>
-    <div class="grid justify-content-center mt-8">
+    <div class="grid mt-8">
         @for (chatbot of chatbots; track $index) {
-          <div class="col-4 p-0">
-            <a routerLink="['dashboard/chatbot', chatbot.id]">
+          <div class="col-4 p-1">
+            <a routerLink="[['/', 'dashboard', 'chatbot', chatbot.id]]">
               <div class="p-3 flex flex-column border-200 pricing-card cursor-pointer border-2 hover:border-primary transition-duration-300 transition-all" style="border-radius:10px">
                 <div class="my-5 text-center">
                   <img src="assets/demo/images/landing/free.svg" class="w-10 h-10 mx-auto" alt="Chatbot icon">

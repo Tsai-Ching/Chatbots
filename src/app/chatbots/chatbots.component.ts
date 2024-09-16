@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { DividerModule } from 'primeng/divider';
@@ -14,11 +14,21 @@ import { ChatbotService } from '../chatbot.service';
   templateUrl: './chatbots.component.html',
   styleUrl: './chatbots.component.scss'
 })
-export class ChatbotsComponent {
+export class ChatbotsComponent implements OnInit{
   chatbotService  =  inject(ChatbotService);
   router = inject(Router);
   items: MenuItem[] =[
     { label: 'Chatbots'},
     { label: 'Settings'},
   ];
+  chatbots: any[] = [];
+
+  ngOnInit(): void {
+    this.chatbotService.getChatbots().subscribe(chatbots => {
+      // this.chatbots = chatbots;
+      console.log(chatbots);
+
+    });
+  }
+
 }

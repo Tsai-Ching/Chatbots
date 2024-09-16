@@ -40,7 +40,13 @@ export class ChatbotService {
     };
 
     return this.#httpClient.post<any>(`${this.baseUrl}/api/v1/chatbots/query`, requestBody, {
-      withCredentials: true // 開啟 withCredentials 以攜帶 Cookie
+      withCredentials: true, // 開啟 withCredentials 以攜帶 Cookie
+    });
+  }
+
+  getChatbots() {
+    return this.#httpClient.get(`${this.baseUrl}/api/v1/chatbots/list`, {
+      withCredentials: true
     });
   }
 }

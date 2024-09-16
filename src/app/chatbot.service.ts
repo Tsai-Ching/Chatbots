@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { ChatbotConfig } from './create-chatbot/entity/chatbt-entity';
 import { Observable } from 'rxjs';
+import { Chatbot } from './chatbots/entity/chatbot.entity';
 
 @Injectable({
   providedIn: 'root'
@@ -44,8 +45,8 @@ export class ChatbotService {
     });
   }
 
-  getChatbots() {
-    return this.#httpClient.get(`${this.baseUrl}/api/v1/chatbots/list`, {
+  getChatbots(): Observable<Chatbot[]> {
+    return this.#httpClient.get<Chatbot[]>(`${this.baseUrl}/api/v1/chatbots/list`, {
       withCredentials: true
     });
   }

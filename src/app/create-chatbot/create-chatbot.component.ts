@@ -28,7 +28,7 @@ export class CreateChatbotComponent {
     this.chatbotService.createChatBot().subscribe({
       next: (data: any) => {
         console.log(data);
-        this.router.navigate([`dashboard/chatbots/chatbot`, data.id]);
+        this.router.navigate([`dashboard/chatbot`, data.id]);
       },
       error: (err) => {
         console.log(err);

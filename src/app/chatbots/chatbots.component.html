@@ -11,13 +11,18 @@
     </div>
     <div class="justify-content-between mt-8">
       <div class="col-12 lg:col-4 p-0">
-        <div class="p-3 flex flex-column border-200 pricing-card cursor-pointer border-2 hover:border-primary transition-duration-300 transition-all" style="border-radius:10px">
-          <div class="my-5 text-center">
-            <img src="assets/demo/images/landing/free.svg" class="w-10 h-10 mx-auto" alt="Chatbot icon">
-            <p-divider class="w-full bg-surface-200"></p-divider>
-            <h3 class="text-900 text-center my-5">Chatbot Name</h3>
-          </div>
-        </div>
+        @for (chatbot of chatbots; track $index) {
+          <a routerLink="['/chatbot', chatbot.id]">
+            <div class="p-3 flex flex-column border-200 pricing-card cursor-pointer border-2 hover:border-primary transition-duration-300 transition-all" style="border-radius:10px">
+              <div class="my-5 text-center">
+                <img src="assets/demo/images/landing/free.svg" class="w-10 h-10 mx-auto" alt="Chatbot icon">
+                <p-divider class="w-full bg-surface-200"></p-divider>
+                <h3 class="text-900 text-center my-5">{{chatbot.name}}</h3>
+              </div>
+            </div>
+          </a>
+        }
+
       </div>
     </div>
   </div>

@@ -6,6 +6,7 @@ import { TabMenuModule } from 'primeng/tabmenu';
 import { ButtonModule } from 'primeng/button';
 import { TopbarComponent } from '../topbar/topbar.component';
 import { ChatbotService } from '../chatbot.service';
+import { Chatbot } from './entity/chatbot.entity';
 
 @Component({
   selector: 'app-chatbots',
@@ -21,11 +22,11 @@ export class ChatbotsComponent implements OnInit{
     { label: 'Chatbots'},
     { label: 'Settings'},
   ];
-  chatbots: any[] = [];
+  chatbots: Chatbot[] = [];
 
   ngOnInit(): void {
-    this.chatbotService.getChatbots().subscribe(chatbots => {
-      // this.chatbots = chatbots;
+    this.chatbotService.getChatbots().subscribe((chatbots: Chatbot[]) => {
+      this.chatbots = chatbots;
       console.log(chatbots);
 
     });

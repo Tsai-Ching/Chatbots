@@ -16,11 +16,13 @@ import { RippleModule } from 'primeng/ripple';
 export class ForgetPwdComponent {
   authService = inject(AuthService);
   email: string = '';
+  isSent: boolean = false;
 
   getResetEmail() {
 
     this.authService.getResetEmail(this.email).subscribe({
       next: (response) => {
+        this.isSent = true;
         console.log('請求成功', response);
       },
       error: (error) => {

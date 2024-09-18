@@ -56,6 +56,7 @@ export class AuthService {
   }
 
   resetPassword(data: { new_password: string }, token: string) {
+console.log(token);
 
     return this.#httpClient.post<any>(`${this.baseUrl}/api/v1/users/reset-password`,
     { token: token, password: data.new_password },

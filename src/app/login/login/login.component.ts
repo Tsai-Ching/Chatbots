@@ -19,11 +19,13 @@ import { DividerModule } from 'primeng/divider';
 })
 export class LoginComponent implements OnInit{
 
-  authService  =  inject(AuthService);
+  authService = inject(AuthService);
   router = inject(Router);
   loginData: LoginEntity = new LoginEntity();
   @ViewChild('form', { static: false }) loginForm!: NgForm;
   googleLoginUrl: string = '';
+  isLoginFailed: boolean = false;
+  errorMessage: string = "";
 
   constructor(public layoutService: LayoutService) { }
 
@@ -43,10 +45,14 @@ export class LoginComponent implements OnInit{
     if(this.loginForm.valid){
 
       this.authService.login(this.loginData)
-      .subscribe((data: any) => {
-
-        if(this.authService.isLoggedIn()){
+      .subscribe({
+        next: (data: any) => {
           this.router.navigate(['/dashboard']);
+        },
+        error: (err) => {
+          console.log(err);
+          this.isLoginFailed = true;
+          this.errorMessage = err.error.detail;
         }
       });
     }

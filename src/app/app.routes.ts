@@ -10,6 +10,7 @@ import { CreateChatbotComponent } from './create-chatbot/create-chatbot.componen
 import { ChatbotsComponent } from './chatbots/chatbots.component';
 import { ChatbotComponent } from './chatbot/chatbot.component';
 import { OAuthCallbackComponent } from './o-auth-callback/o-auth-callback.component';
+import { ForgetPwdComponent } from './forget-pwd/forget-pwd.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -37,5 +38,6 @@ export const routes: Routes = [
   },
   { path: 'account', component: AccountComponent },
   { path: 'password-reset', component: ResetPwdComponent },
+  { path: 'forget-password', component: ForgetPwdComponent },
   { path: 'oauth-callback', component: OAuthCallbackComponent },
 ];

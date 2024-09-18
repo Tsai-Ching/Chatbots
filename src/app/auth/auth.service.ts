@@ -33,7 +33,7 @@ export class AuthService {
       .pipe(
         tap((result) => {
           console.log('login successful');
-          this.#cookieService.set('token', result.access_token);
+          // this.#cookieService.set('token', result.access_token);
         }),
         catchError((error) => {
           console.error('Login failed:', error);
@@ -42,17 +42,16 @@ export class AuthService {
       );
   }
 
-
   logout() {
     this.#cookieService.delete('token')
   }
 
-  isLoggedIn() {
-    console.log(this.#cookieService.getAll());
+  getResetEmail(email: string) {
+    console.log(email);
 
-    const token = this.#cookieService.get('fastapiusersauth');
-    if (!token) return false;
-    return true;
+    return this.#httpClient.post<any>(`${this.baseUrl}/api/v1/users/forgot-password`,
+    {email: email}
+    );
   }
 
   resetPassword(data: { current_password: string; new_password: string; name: string }) {

@@ -37,7 +37,7 @@
             </div>
           </div>
           <div class="chat-input mt-7">
-            <input class="w-full mr-2" type="text" [(ngModel)]="message" pInputText placeholder="Type a message" />
+            <input class="w-full mr-2" type="text" [(ngModel)]="message" (keydown.enter)="sentMsg()" pInputText placeholder="Type a message" />
             <button pButton label="Sent" style="background-color: var(--primary-color)" icon="pi pi-send" (click)="sentMsg()"></button>
           </div>
         </p-card>

@@ -12,8 +12,6 @@ import { Router, RouterModule } from '@angular/router';
 import {MessageModule} from 'primeng/message';
 import { CommonModule } from '@angular/common';
 import { DividerModule } from 'primeng/divider';
-import { GoogleSigninButtonModule, SocialAuthService } from "@abacritt/angularx-social-login";
-import { SocialUser } from "@abacritt/angularx-social-login";
 import { InputTextModule } from 'primeng/inputtext';
 import { passwordValidator } from '../Validator';
 
@@ -30,7 +28,6 @@ import { passwordValidator } from '../Validator';
     MessageModule,
     CommonModule,
     DividerModule,
-    GoogleSigninButtonModule,
     RouterModule,
     InputTextModule,
     ReactiveFormsModule,
@@ -42,22 +39,32 @@ export class RegisterComponent implements OnInit {
 
   authService  =  inject(AuthService);
   router = inject(Router);
-  socialAuthService = inject(SocialAuthService);
 
   registerForm: FormGroup;
   registerData: RegisterEntity = new RegisterEntity();
 
   isRegisterFailed: boolean = false;
   errorMessage: string = "";
+  googleLoginUrl: string = '';
 
-  constructor() {
+  constructor(public layoutService: LayoutService) {
     this.registerForm = new FormGroup({
       email: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required, Validators.minLength(9), passwordValidator()]),
     });
   }
 
-  ngOnInit() {}
+  ngOnInit(): void {
+    this.authService.getGoogleLoginUrl().subscribe({
+      next: (data: any) => {
+        console.log(data.authorization_url);
+        this.googleLoginUrl = data.authorization_url;
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
 
   public onSubmit() {
     if (this.registerForm.valid) {

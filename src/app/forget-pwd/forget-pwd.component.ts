@@ -21,12 +21,10 @@ export class ForgetPwdComponent {
 
     this.authService.getResetEmail(this.email).subscribe({
       next: (response) => {
-        // 处理成功响应
-        console.log('请求成功', response);
+        console.log('請求成功', response);
       },
       error: (error) => {
-        // 处理错误
-        console.error('请求失败', error);
+        console.error('請求失敗', error);
       },
     });;
   }

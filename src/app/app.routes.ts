@@ -37,7 +37,7 @@ export const routes: Routes = [
     ]
   },
   { path: 'account', component: AccountComponent },
-  { path: 'password-reset', component: ResetPwdComponent },
+  { path: 'reset_password', component: ResetPwdComponent },
   { path: 'forget-password', component: ForgetPwdComponent },
   { path: 'oauth-callback', component: OAuthCallbackComponent },
 ];

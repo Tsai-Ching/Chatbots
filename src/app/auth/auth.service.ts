@@ -51,24 +51,31 @@ export class AuthService {
 
     return this.#httpClient.post<any>(`${this.baseUrl}/api/v1/users/forgot-password`,
     {email: email},
-    {
-      headers: {
-      "Content-Type": "application/json"
-      }
-    }
+
     );
   }
 
-  resetPassword(data: { current_password: string; new_password: string; name: string }) {
+  resetPassword(data: { new_password: string }, token: string) {
 
     return this.#httpClient.post<any>(`${this.baseUrl}/api/v1/users/reset-password`,
-    {current_password:data.current_password,new_password:data.new_password, name:data.name},
+    { token: token, password: data.new_password },
     {
       headers: {
-        'Authorization': 'Bearer ' + this.#cookieService.get('token'),
+        "Content-Type": "application/json"
       }
     });
   }
+
+  // resetPassword(data: { current_password: string; new_password: string; name: string }) {
+
+  //   return this.#httpClient.post<any>(`${this.baseUrl}/api/v1/users/reset-password`,
+  //   {current_password:data.current_password,new_password:data.new_password, name:data.name},
+  //   {
+  //     headers: {
+  //       'Authorization': 'Bearer ' + this.#cookieService.get('token'),
+  //     }
+  //   });
+  // }
 
   getGoogleLoginUrl() {
     return this.#httpClient.get<string>(`${this.baseUrl}/api/v1/users/auth/google/authorize`,

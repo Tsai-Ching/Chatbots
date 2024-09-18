@@ -19,25 +19,28 @@ export class ResetPwdComponent implements OnInit {
   router = inject(Router);
   #authService = inject(AuthService);
   resetPwdFormFroup: FormGroup;
+  token: string = '';
 
   constructor() {
     this.resetPwdFormFroup = new FormGroup({
-      current_password: new FormControl('', [Validators.required]),
+      // current_password: new FormControl('', [Validators.required]),
       new_password: new FormControl('', [Validators.required, Validators.minLength(9), passwordValidator()]),
       //confirmPassword: new FormControl('', [Validators.required, Validators.minLength(9), passwordValidator()]),
     });
   }
 
   ngOnInit(): void {
-    // if (!this.#authService.isLoggedIn()) {
-    //   this.router.navigateByUrl('/login');
-    // }
+    this.route.queryParams.subscribe((params) => {
+      this.token = params['token'];
+      const url = this.router.url.split('?')[0];
+      this.router.navigateByUrl(url, { replaceUrl: true });
+    });
   }
 
 
   resetPassword() {
     if (this.resetPwdFormFroup.valid) {
-      this.#authService.resetPassword(this.resetPwdFormFroup.value).subscribe(data => {
+      this.#authService.resetPassword(this.resetPwdFormFroup.value, this.token).subscribe(data => {
         this.router.navigateByUrl('/login');
       }, (error: any) => {
         console.log(error);

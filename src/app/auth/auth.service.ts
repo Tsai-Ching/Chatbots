@@ -50,7 +50,12 @@ export class AuthService {
     console.log(email);
 
     return this.#httpClient.post<any>(`${this.baseUrl}/api/v1/users/forgot-password`,
-    {email: email}
+    {email: email},
+    {
+      headers: {
+      "Content-Type": "application/json"
+      }
+    }
     );
   }
 

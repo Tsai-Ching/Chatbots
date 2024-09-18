@@ -19,6 +19,15 @@ export class ForgetPwdComponent {
 
   getResetEmail() {
 
-    this.authService.getResetEmail(this.email);
+    this.authService.getResetEmail(this.email).subscribe({
+      next: (response) => {
+        // 处理成功响应
+        console.log('请求成功', response);
+      },
+      error: (error) => {
+        // 处理错误
+        console.error('请求失败', error);
+      },
+    });;
   }
 }

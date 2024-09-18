@@ -31,9 +31,10 @@ export class ResetPwdComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
-
+      console.log('Query Params:', params);
       this.token = params['token'];
-      console.log(this.token);
+      console.log('Token:', this.token);
+
       const url = this.router.url.split('?')[0];
       this.router.navigateByUrl(url, { replaceUrl: true });
     });

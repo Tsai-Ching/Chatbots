@@ -8,27 +8,29 @@
           <div class="text-600 mb-5">We'll send you rest instruction.</div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group w-full">
           <div class="field p-fluid">
-            <label>Email</label>
-            <input class="password mb-5" pInputText id="email" type="text" placeholder="email" [(ngModel)]="email" id="email" />
+            <input class="password mb-5 mt-5 w-full" pInputText id="email" type="text" placeholder="Enter email" [(ngModel)]="email" id="email" />
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group w-full">
           <div class="field p-fluid">
             <button pButton label="Reset Password" [disabled]="!email" (click)="getResetEmail()"></button>
           </div>
         </div>
 
 
-      <div class="text-900 lg:text-xl flex">
+      <div class="mt-5 text-900 lg:text-xl flex">
         <span>Remember your password?</span>
         <a class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: var(--primary-color)" [routerLink]="['/login']" routerLinkActive="router-link-active">Login</a>
       </div>
       </div>
     }
     @else {
+      <span class="material-icons check-icon pulse">
+        expand_circle_down
+        </span>
       <div class="text-center">
         <h1>Email Sent</h1>
         <div class="text-600 mb-5">We have sent a password reset link to your email.</div>

@@ -12,23 +12,20 @@ import { AuthService } from '../auth/auth.service';
   templateUrl: './account.component.html',
   styleUrl: './account.component.scss'
 })
-export class AccountComponent implements OnInit{
-  id: string = '';
+export class AccountComponent {
+  email: string = '';
+  password: string = '';
   authService = inject(AuthService);
 
-  ngOnInit(): void {
-    this.authService.getId().subscribe(id => this.id = id);
-    console.log(this.id);
-  }
-
   updateEmail() {
-
+    this.authService.updateEmail(this.email);
   }
 
-  deleteUser() {
-
+  updatePassword() {
+    this.authService.updateEmail(this.password);
   }
-  updateUser() {
 
-  }
+  // deleteUser() {
+  //   this.authService.deleteUser();
+  // }
 }

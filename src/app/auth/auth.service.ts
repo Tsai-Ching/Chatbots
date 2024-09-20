@@ -93,13 +93,17 @@ console.log(token);
     return this.#httpClient.get(callbackUrl, {withCredentials: true} );
   }
 
-  updateEmail(email: string, id: string) {
-    return this.#httpClient.patch<any>(`${this.baseUrl}/api/v1/users/${id}`,
+  updateEmail(email: string) {
+    return this.#httpClient.patch<any>(`${this.baseUrl}/api/v1/users/me`,
     {email: email});
   }
 
-  getId() {
-    return this.#httpClient.get<any>(`${this.baseUrl}/api/v1/users/me`);
+  updatePassword(password: string) {
+    return this.#httpClient.patch<any>(`${this.baseUrl}/api/v1/users/me`,
+    {password: password});
   }
 
+  // deleteUser() {
+
+  // }
 }

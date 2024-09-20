@@ -6,22 +6,22 @@
       <div class="card">
         <h4>Email</h4>
         <div class="formgroup-inline mb-1">
-          <input class="email" pInputText id="firstname1" type="text" placeholder="Firstname" />
-          <button pButton label="Update" (click)="updateEmail()"></button>
+          <input class="email" pInputText id="firstname1" type="text" placeholder="Firstname" [(ngModel)]="email" />
+          <button pButton label="Update Email" (click)="updateEmail()"></button>
         </div>
         <small>Please enter the email address you want to use to sign in with.</small>
       </div>
 
       <div class="card">
-        <h4>Display Name</h4>
+        <h4>Password</h4>
         <div class="formgroup-inline mb-1">
           <input class="name" pInputText id="username" type="text" placeholder="Firstname" />
-          <button pButton label="Update" (click)="updateUser()"></button>
+          <button pButton label="Update Password" (click)="updatePassword()"></button>
         </div>
         <small class="mt-1">Enter your full name or a comfortable display name.</small>
       </div>
 
-      <div class="card">
+      <!-- <div class="card">
         <h4 class="text-red-600">Delete Account</h4>
         <div class="field p-fluid">
           <p>
@@ -32,7 +32,7 @@
         <div class="flex justify-content-end">
           <button pButton label="Delete" (click)="deleteUser()" severity="danger"></button>
         </div>
-      </div>
+      </div> -->
 
     </div>
   </div>

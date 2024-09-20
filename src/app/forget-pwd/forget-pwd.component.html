@@ -19,7 +19,9 @@
             <button pButton label="Reset Password" [disabled]="!email" (click)="getResetEmail()"></button>
           </div>
         </div>
-
+        @if(isLoading) {
+          <p-progressSpinner ariaLabel="loading" />
+        }
 
       <div class="mt-5 text-900 lg:text-xl flex">
         <span>Remember your password?</span>

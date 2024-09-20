@@ -98,4 +98,8 @@ console.log(token);
     {email: email});
   }
 
+  getId() {
+    return this.#httpClient.get<any>(`${this.baseUrl}/api/v1/users/me`);
+  }
+
 }

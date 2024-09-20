@@ -93,4 +93,9 @@ console.log(token);
     return this.#httpClient.get(callbackUrl, {withCredentials: true} );
   }
 
+  updateEmail(email: string, id: string) {
+    return this.#httpClient.patch<any>(`${this.baseUrl}/api/v1/users/${id}`,
+    {email: email});
+  }
+
 }

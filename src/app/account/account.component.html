@@ -1,33 +1,35 @@
 <div>
   <div class="text-900 font-bold text-6xl mb-4 text-center">Account</div>
   <div class="flex justify-content-center">
-    <div class="col-8">
+    <div class="col-6">
       <div class="card">
         <h4>Email</h4>
-
-          <div class="formgroup-inline">
-            <input class="email" pInputText id="firstname1" type="text" placeholder="Firstname" />
-            <button pButton label="Update" (click)="updateUser()"></button>
-          </div>
-          <small>Please enter the email address you want to use to sign in with.</small>
-
+        <div class="formgroup-inline mb-1">
+          <input class="email" pInputText id="firstname1" type="text" placeholder="Firstname" />
+          <button pButton label="Update" (click)="updateEmail()"></button>
+        </div>
+        <small>Please enter the email address you want to use to sign in with.</small>
       </div>
 
       <div class="card">
-        <div class="formgroup-inline">
-          <input pInputText id="username" type="text" />
+        <h4>Display Name</h4>
+        <div class="formgroup-inline mb-1">
+          <input class="name" pInputText id="username" type="text" placeholder="Firstname" />
           <button pButton label="Update" (click)="updateUser()"></button>
         </div>
-        <small>Enter your full name or a comfortable display name.</small>
+        <small class="mt-1">Enter your full name or a comfortable display name.</small>
       </div>
 
       <div class="card">
-        <h4>Delete Account</h4>
+        <h4 class="text-red-600">Delete Account</h4>
         <div class="field p-fluid">
           <p>
             Once you delete your account, there is no going back. Please be certain.All your uploaded data and trained chatbots will be deleted.
             <span><strong>This action is not reversible</strong></span>
           </p>
+        </div>
+        <div class="flex justify-content-end">
+          <button pButton label="Delete" (click)="deleteUser()" severity="danger"></button>
         </div>
       </div>
 

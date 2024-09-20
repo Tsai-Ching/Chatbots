@@ -44,6 +44,7 @@ export class ResetPwdComponent implements OnInit {
   resetPassword() {
     if (this.resetPwdFormFroup.valid) {
       this.#authService.resetPassword(this.resetPwdFormFroup.value, this.token).subscribe(data => {
+
         this.router.navigateByUrl('/login');
       }, (error: any) => {
         console.log(error);

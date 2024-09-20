@@ -25,7 +25,8 @@ export class TopbarComponent implements OnInit {
         label: 'Dashboard'
       },
       {
-        label: 'Account Settings'
+        label: 'Account Settings',
+        routerLink: ['/account'],
       },
       {
         label: 'Create or join team'

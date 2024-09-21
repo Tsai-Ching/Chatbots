@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { Component, OnInit, inject } from '@angular/core';
 import { InputTextModule } from 'primeng/inputtext';
 import { CardModule } from 'primeng/card';
@@ -8,7 +9,7 @@ import { AuthService } from '../auth/auth.service';
 @Component({
   selector: 'app-account',
   standalone: true,
-  imports: [InputTextModule, CardModule, ButtonModule, TopbarComponent],
+  imports: [InputTextModule, CardModule, ButtonModule, TopbarComponent, FormsModule],
   templateUrl: './account.component.html',
   styleUrl: './account.component.scss'
 })

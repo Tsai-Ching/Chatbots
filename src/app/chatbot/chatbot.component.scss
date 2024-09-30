@@ -23,7 +23,9 @@
 }
 
 .bot-message {
-  text-align: left;
+  text-align: right;
+  display: block;
+  align-self: end;
   color: black;
   background-color: #e0e0e0;
   padding: 10px;

@@ -7,14 +7,22 @@
   justify-content: center;
 }
 
+.chat-name {
+  display: flex;
+  padding: 1.5rem;
+}
+
+.chat-card {
+  border: solid rgb(229, 231, 235);
+}
+
 .chat-input {
   display: flex;
   justify-content: space-between;
 }
 /* chat.component.css */
 .user-message {
-  text-align: right;
-  display: inline-flex;
+  display: block;
   color: blue;
   background-color: #e0f7fa;
   padding: 10px;
@@ -23,7 +31,6 @@
 }
 
 .bot-message {
-  text-align: right;
   display: block;
   align-self: end;
   color: black;
@@ -36,4 +43,6 @@
 .chat-window {
   height: 300px;
   overflow-y: scroll;
+  display: flex;
+  padding: 1.5rem;
 }

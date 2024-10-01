@@ -27,7 +27,7 @@ export class ChatbotComponent {
     { label: 'Analytics'},
     { label: 'Sources'},
     { label: 'Connect'},
-    { label: 'Settings'}
+    { label: 'Settings', routerLink: 'settings'}
   ];
   message: string = ''; // 綁定輸入框
   chatMessages: any[] = []; // 聊天消息列表

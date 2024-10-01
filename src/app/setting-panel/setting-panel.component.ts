@@ -2,11 +2,12 @@ import { Component, inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { MenuModule } from 'primeng/menu';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-setting-panel',
   standalone: true,
-  imports: [MenuModule ],
+  imports: [MenuModule, RouterModule ],
   templateUrl: './setting-panel.component.html',
   styleUrl: './setting-panel.component.scss'
 })

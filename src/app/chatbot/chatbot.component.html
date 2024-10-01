@@ -39,9 +39,10 @@
           </div>
           <p-divider class="w-full bg-surface-200"></p-divider>
           <div class="chat-input mt-7">
-            <textarea class="w-full mr-2 message-box" type="text" [(ngModel)]="message" (keydown.enter)="sentMsg()" placeholder="Type a message">
-            </textarea>
-            <button pButton label="Sent" style="background-color: var(--primary-color)" icon="pi pi-send" (click)="sentMsg()"></button>
+            <textarea class="w-full mr-2 message-box" type="text" [(ngModel)]="message" (keydown.enter)="sentMsg()" placeholder="Type a message"></textarea>
+            <button pButton type="button" style="background: transparent; border: none" (click)="sentMsg()">
+              <i class="p-button-icon pi pi-send" style="font-size: 2rem"></i>
+            </button>
           </div>
         </p-card>
 

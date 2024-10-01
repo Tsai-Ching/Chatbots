@@ -31,11 +31,11 @@
             <h5>這裡放聊天機器人名稱</h5>
           </div>
           <div class="chat-window">
-            <div *ngFor="let chat of chatMessages" class="flex-column flex">
+            <ng-container *ngFor="let chat of chatMessages">
               <p [ngClass]="{'user-message': chat.isUser, 'bot-message': !chat.isUser}">
                 {{ chat.content }}
               </p>
-            </div>
+            </ng-container>
           </div>
           <p-divider class="w-full bg-surface-200"></p-divider>
           <div class="chat-input mt-7">

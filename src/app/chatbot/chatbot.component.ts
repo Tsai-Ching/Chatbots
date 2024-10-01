@@ -23,7 +23,11 @@ export class ChatbotComponent {
   formVisible: boolean = false;
   items: MenuItem[] =[
     { label: 'Playground'},
-    { label: 'Settings'},
+    { label: 'Activity'},
+    { label: 'Analytics'},
+    { label: 'Sources'},
+    { label: 'Connect'},
+    { label: 'Settings'}
   ];
   message: string = ''; // 綁定輸入框
   chatMessages: any[] = []; // 聊天消息列表

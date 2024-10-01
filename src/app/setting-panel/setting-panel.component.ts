@@ -24,7 +24,7 @@ export class SettingPanelComponent {
       ];
   }
 
-  navigateTo() {
-    this.router.navigate([`/chatbot/${this.chatbotId}/${path}`])
-  }
+  // navigateTo() {
+  //   this.router.navigate([`/chatbot/${this.chatbotId}/${path}`])
+  // }
 }

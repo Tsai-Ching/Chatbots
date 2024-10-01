@@ -41,7 +41,7 @@
           <div class="chat-input mt-7">
             <textarea class="w-full mr-2 message-box" type="text" [(ngModel)]="message" (keydown.enter)="sentMsg()" placeholder="Type a message"></textarea>
             <button pButton type="button" style="background: transparent; border: none" (click)="sentMsg()">
-              <i class="p-button-icon pi pi-send" style="font-size: 2rem"></i>
+              <i class="p-button-icon pi pi-send" style="font-size: 2rem; background-color: var(--primary-color)"></i>
             </button>
           </div>
         </p-card>

@@ -11,6 +11,8 @@ import { ChatbotsComponent } from './chatbots/chatbots.component';
 import { ChatbotComponent } from './chatbot/chatbot.component';
 import { OAuthCallbackComponent } from './o-auth-callback/o-auth-callback.component';
 import { ForgetPwdComponent } from './forget-pwd/forget-pwd.component';
+import { SettingPanelComponent } from './setting-panel/setting-panel.component';
+import { GeneralSettingComponent } from './general-setting/general-setting.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -30,7 +32,19 @@ export const routes: Routes = [
       },
       {
         path: 'chatbot/:id',
-        component: ChatbotComponent
+        component: ChatbotComponent,
+        children: [
+          {
+            path: '',
+            component: SettingPanelComponent,
+            children: [
+              {
+                path: 'settings',
+                component: GeneralSettingComponent
+              }
+            ]
+          }
+        ]
       },
       { path: 'create-chatbot', component: CreateChatbotComponent },
 

@@ -22,7 +22,8 @@ export class TopbarComponent implements OnInit {
         separator: true
       },
       {
-        label: 'Dashboard'
+        label: 'Dashboard',
+        routerLink: ['/dashboard/chatbots'],
       },
       {
         label: 'Account Settings',
@@ -35,9 +36,10 @@ export class TopbarComponent implements OnInit {
         separator: true
       },
       {
-          label: 'Sign out'
+        label: 'Sign out',
+        routerLink: ['/auth/login'],
       },
-  ];
+    ];
 
   }
 }

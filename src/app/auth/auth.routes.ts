@@ -8,7 +8,7 @@ import { OAuthCallbackComponent } from "./o-auth-callback/o-auth-callback.compon
 export const AuthRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'reset_password', component: ResetPwdComponent },
-  { path: 'forget_password', component: ForgetPwdComponent },
+  { path: 'reset-password', component: ResetPwdComponent },
+  { path: 'forget-password', component: ForgetPwdComponent },
   { path: 'oauth-callback', component: OAuthCallbackComponent },
 ]

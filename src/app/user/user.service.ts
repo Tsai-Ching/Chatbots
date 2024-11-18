@@ -16,7 +16,7 @@ export class UserService {
       {
         title: "123",
         content: text,
-        chatbot_id: "c572f65e-6438-40f1-80a1-704fe8d74ac1"
+        chatbot_id: "96dcd335-837f-408d-a346-01c1946021eb"
       },
       { withCredentials: true }
     )

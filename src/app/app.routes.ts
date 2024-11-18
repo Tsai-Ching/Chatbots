@@ -6,6 +6,7 @@ import { ChatbotsComponent } from './user/chatbots/chatbots.component';
 import { SettingPanelComponent } from './chatbot/setting-panel/setting-panel.component';
 import { ChatbotComponent } from './chatbot/playground/chatbot.component';
 import { authGuard } from './auth/auth.guard';
+import { OAuthCallbackComponent } from './auth/o-auth-callback/o-auth-callback.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },

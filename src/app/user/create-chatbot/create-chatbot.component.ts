@@ -24,7 +24,7 @@ export class CreateChatbotComponent {
   trainSources: MenuItem[] | undefined;
   allowedExtensions = ['.pdf', '.txt'];
   allowMultipleFiles = false;
-  extactedText: string = '';
+  extractedText: string = '';
 
   ngOnInit() {
     this.trainSources = [
@@ -60,24 +60,24 @@ export class CreateChatbotComponent {
             break;
           default:
             console.error('Unsupported file type:', file.type);
-            // 你可以顯示提示信息給用戶，表示這種類型的文件不支援
             break;
         }
-      })
+      });
     }
   }
+
   readTxt(file: File) {
     const reader = new FileReader();
     reader.onload = (e) => {
-      const text = e.target?.result as string;
+      const text = reader.result as string;
       console.log(text);
+      this.extractedText = text;
+    };
 
-      this.extactedText = text;
-    }
-    reader.onerror = (e) => {
-      console.error(e.target?.error?.code);
+    reader.onerror = () => {
+      console.error('Error reading the file:', reader.error);
+    };
 
-    }
     reader.readAsText(file, "UTF-8");
   }
 
@@ -107,6 +107,12 @@ export class CreateChatbotComponent {
   }
 
   onTrain() {
-    this.userService.feedText(this.extactedText);
+    this.userService.feedText(this.extractedText).subscribe(
+      response => {
+        console.log(response);
+      },
+      error => {
+        console.error(error);
+      });
   }
 }

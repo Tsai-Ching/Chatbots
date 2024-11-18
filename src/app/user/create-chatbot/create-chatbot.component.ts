@@ -17,17 +17,17 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = '/assets/pdf.worker.min.mjs';
   styleUrl: './create-chatbot.component.scss'
 })
 export class CreateChatbotComponent {
-  items: MenuItem[] | undefined;
-  chatbotService = inject(ChatbotService);
   router = inject(Router);
+  userService = inject(UserService);
+  chatbotService = inject(ChatbotService);
+
+  trainSources: MenuItem[] | undefined;
   allowedExtensions = ['.pdf', '.txt'];
   allowMultipleFiles = false;
-  fileText: string = '';
-  userService = inject(UserService);
-
+  extactedText: string = '';
 
   ngOnInit() {
-    this.items = [
+    this.trainSources = [
       { label: 'Files', icon: 'pi pi-file' },
       { label: 'Text', icon: 'pi pi-align-left' },
       { label: 'Website', icon: 'pi pi-globe' },
@@ -72,7 +72,7 @@ export class CreateChatbotComponent {
       const text = e.target?.result as string;
       console.log(text);
 
-      this.fileText = text;
+      this.extactedText = text;
     }
     reader.onerror = (e) => {
       console.error(e.target?.error?.code);
@@ -107,6 +107,6 @@ export class CreateChatbotComponent {
   }
 
   onTrain() {
-    this.userService.feedText(this.fileText);
+    this.userService.feedText(this.extactedText);
   }
 }

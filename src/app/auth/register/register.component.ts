@@ -14,6 +14,8 @@ import { CommonModule } from '@angular/common';
 import { DividerModule } from 'primeng/divider';
 import { InputTextModule } from 'primeng/inputtext';
 import { passwordValidator } from '../../Validator';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-register',
@@ -31,14 +33,17 @@ import { passwordValidator } from '../../Validator';
     RouterModule,
     InputTextModule,
     ReactiveFormsModule,
+    ToastModule
   ],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.scss'
+  styleUrl: './register.component.scss',
+  providers: [MessageService]
 })
 export class RegisterComponent implements OnInit {
 
   authService = inject(AuthService);
   router = inject(Router);
+  messageService = inject(MessageService);
 
   registerForm: FormGroup;
   registerData: RegisterEntity = new RegisterEntity();
@@ -74,12 +79,16 @@ export class RegisterComponent implements OnInit {
           next: (data: any) => {
             console.log(data);
             this.isRegisterFailed = false;
-            this.router.navigate(['/login']);
+            this.router.navigate(['/auth/login']);
           },
           error: (err) => {
             console.log(err);
             this.isRegisterFailed = true;
             this.errorMessage = err.error.detail;
+            console.log(this.isRegisterFailed);
+            console.log(this.errorMessage);
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: this.errorMessage });
+
           }
         });
     }

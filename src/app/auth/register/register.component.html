@@ -138,13 +138,6 @@
               ></p-checkbox>
               <label for="rememberme1">Remember me</label>
             </div>
-            <a
-              class="font-medium no-underline ml-2 text-right cursor-pointer"
-              style="color: var(--primary-color)"
-              [routerLink]="['/auth/forget-password']"
-            >
-              Forgot password?
-            </a>
           </div>
           <button
             pButton
@@ -203,3 +196,4 @@
     </div>
   </div>
 </div>
+<p-toast position="top-center" [baseZIndex]="5000"></p-toast>

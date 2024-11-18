@@ -1,0 +1,20 @@
+<div class="drop-zone">
+  <input
+    type="file"
+    accept="allowedTypes"
+    multiple="alloewdmultipeFiles"
+    (change)="onFileSelected($event)"
+    (drop)="onFileDrop($event)"
+  />
+
+  <label for="fileDropRef"
+    >Drag & drop files here, or click to select files</label
+  >
+  <div>Allowed file types: {{ allowedTypes }}</div>
+
+  @if(files){
+  <div>Uploaded:</div>
+  @for(file of files; track $index) {
+  <div>{{ file.name }}</div>
+  } }
+</div>

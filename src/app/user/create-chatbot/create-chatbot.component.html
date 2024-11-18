@@ -1,7 +1,11 @@
 <div class="main">
   <div class="p-5 flex flex-column justify-content-center">
-    <h1 class="text-900 font-bold text-4xl lg:text-5xl mb-2 text-center">Data Sources</h1>
-    <p class="text-600 mb-5 text-center">Add your data sources to train your chatbot</p>
+    <h1 class="text-900 font-bold text-4xl lg:text-5xl mb-2 text-center">
+      Data Sources
+    </h1>
+    <p class="text-600 mb-5 text-center">
+      Add your data sources to train your chatbot
+    </p>
   </div>
   <div class="flex justify-content-center px-6">
     <div class="col-2">
@@ -10,14 +14,30 @@
 
     <div class="creat-view col-10">
       <div class="card col-8">
-        <h5>Alternate Align</h5>
+        <h3>Files</h3>
+        <div class="card upload-text">
+          <app-file-drop
+            [allowedExtensions]="allowedExtensions"
+            [allowMultipleFiles]="allowMultipleFiles"
+            (onFileDropped)="onFileDropped($event)"
+          ></app-file-drop>
+        </div>
       </div>
       <div class="card col-4">
         <h5>Alternate Align</h5>
+        <button
+          pButton
+          label="New Chatbot"
+          class="block"
+          (click)="onCreate()"
+        ></button>
+        <button
+          pButton
+          label="Train"
+          class="block"
+          (click)="onTrain()"
+        ></button>
       </div>
     </div>
   </div>
-
-  <button pButton label="New Chatbot" class="block" (click)="onCreate()"></button>
-
 </div>

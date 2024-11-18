@@ -93,6 +93,4 @@ export class RegisterComponent implements OnInit {
         });
     }
   }
-
-  //TODO: 創建帳號錯誤訊息提示
 }

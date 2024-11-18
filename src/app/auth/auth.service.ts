@@ -19,8 +19,6 @@ export class AuthService {
   constructor() { }
 
   register(data: RegisterEntity) {
-    console.log(data);
-
     return this.#httpClient.post(`${this.baseUrl}/api/v1/users/register`, data);
   }
 
@@ -32,7 +30,6 @@ export class AuthService {
       , { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
       .pipe(
         tap((result) => {
-          console.log('login successful');
           // this.#cookieService.set('token', result.access_token);
         }),
         catchError((error) => {
@@ -47,8 +44,6 @@ export class AuthService {
   }
 
   getResetEmail(email: string) {
-    console.log(email);
-
     return this.#httpClient.post<any>(`${this.baseUrl}/api/v1/users/forgot-password`,
       { email: email },
 
@@ -56,8 +51,6 @@ export class AuthService {
   }
 
   resetPassword(data: { new_password: string }, token: string) {
-    console.log(token);
-
     return this.#httpClient.post<any>(`${this.baseUrl}/api/v1/users/reset-password`,
       { token: token, password: data.new_password },
       {

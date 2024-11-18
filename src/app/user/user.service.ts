@@ -10,6 +10,8 @@ export class UserService {
   #httpClient = inject(HttpClient);
   baseUrl = 'https://chatsource-api.onrender.com';
   feedText(text: string) {
+    console.log('feedText');
+
     return this.#httpClient.post<any>(`${this.baseUrl}/api/v1/chatbots/train`,
       {
         title: "123",

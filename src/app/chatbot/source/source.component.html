@@ -22,7 +22,8 @@
             (onFileDropped)="onFileDropped($event)"
           ></app-file-drop>
         </div>
-        @if(isLoadedFiles.length > 0) { @for(file of isLoadedFiles) {
+        @if(isLoadedFiles.length > 0) { @for(file of isLoadedFiles; track
+        $index) {
         <p>Loaded Files: {{ lfile }}</p>
         } }
       </div>

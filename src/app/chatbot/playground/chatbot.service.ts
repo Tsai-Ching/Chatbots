@@ -36,7 +36,7 @@ export class ChatbotService {
 
   sendMessage(robotId: string, message: string): Observable<any> {
     const requestBody = {
-      id: robotId, // 假設這個是機器人的 id
+      chatbot_id: robotId, // 假設這個是機器人的 id
       content: message
     };
 

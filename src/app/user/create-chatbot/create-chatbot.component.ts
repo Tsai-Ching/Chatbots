@@ -106,15 +106,15 @@ export class CreateChatbotComponent {
     };
   }
 
-  onTrain() {
-    console.log(this.extractedText);
-    this.userService.feedText(this.extractedText).subscribe(
+  // onTrain() {
+  //   console.log(this.extractedText);
+  //   this.userService.feedText(this.extractedText).subscribe(
 
-      response => {
-        console.log(response);
-      },
-      error => {
-        console.error(error);
-      });
-  }
+  //     response => {
+  //       console.log(response);
+  //     },
+  //     error => {
+  //       console.error(error);
+  //     });
+  // }
 }

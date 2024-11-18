@@ -42,7 +42,10 @@ export class SourceComponent {
       next: (data: any) => {
         console.log(data);
         this.chatbotId = data.id;
+        console.log(this.chatbotId);
+
         this.router.navigate([`dashboard`, data.id]);
+        console.log(this.chatbotId);
       },
       error: (err) => {
         console.log(err);
@@ -111,6 +114,7 @@ export class SourceComponent {
   }
 
   onTrain() {
+    console.log(this.chatbotId);
     this.userService.feedText(this.chatbotId, this.extractedText).subscribe(
 
       response => {

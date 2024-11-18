@@ -1,29 +1,41 @@
 <p-tabMenu [model]="items" styleclass="w-full" />
-<div class="py-5 flex justify-content-center" >
+<div class="py-5 flex justify-content-center">
   <div class="w-9">
     <div class="flex justify-content-between">
       <div class="text-center">
         <h1 class="text-900 font-bold text-4xl lg:text-5xl mb-2">Chatbots</h1>
       </div>
       <div>
-        <button pButton label="New Chatbot" [routerLink]="['/dashboard/create-chatbot']" class="block"></button>
+        <button
+          pButton
+          label="New Chatbot"
+          (click)="onCreateBot()"
+          [routerLink]="['/dashboard/create-chatbot']"
+          class="block"
+        ></button>
       </div>
     </div>
     <div class="grid mt-8">
-        @for (chatbot of chatbots; track $index) {
-          <div class="col-4 p-1">
-            <a [routerLink]="['/', 'dashboard', 'chatbot', chatbot.id]">
-              <div class="p-3 flex flex-column border-200 pricing-card cursor-pointer border-2 hover:border-primary transition-duration-300 transition-all" style="border-radius:10px">
-                <div class="my-5 text-center">
-                  <img src="assets/demo/images/landing/free.svg" class="w-10 h-10 mx-auto" alt="Chatbot icon">
-                  <p-divider class="w-full bg-surface-200"></p-divider>
-                  <h3 class="text-900 text-center my-5">{{chatbot.name}}</h3>
-                </div>
-              </div>
-            </a>
+      @for (chatbot of chatbots; track $index) {
+      <div class="col-4 p-1">
+        <a [routerLink]="['/', 'dashboard', 'chatbot', chatbot.id]">
+          <div
+            class="p-3 flex flex-column border-200 pricing-card cursor-pointer border-2 hover:border-primary transition-duration-300 transition-all"
+            style="border-radius: 10px"
+          >
+            <div class="my-5 text-center">
+              <img
+                src="assets/demo/images/landing/free.svg"
+                class="w-10 h-10 mx-auto"
+                alt="Chatbot icon"
+              />
+              <p-divider class="w-full bg-surface-200"></p-divider>
+              <h3 class="text-900 text-center my-5">{{ chatbot.name }}</h3>
+            </div>
           </div>
-        }
-
+        </a>
+      </div>
+      }
     </div>
   </div>
 </div>

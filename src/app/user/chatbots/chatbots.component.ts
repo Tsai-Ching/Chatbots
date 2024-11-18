@@ -32,4 +32,16 @@ export class ChatbotsComponent implements OnInit {
     });
   }
 
+  onCreateBot() {
+    this.chatbotService.createChatBot().subscribe({
+      next: (data: any) => {
+        console.log(data);
+        this.router.navigate([`dashboard`, data.id, `source`]);
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
 }

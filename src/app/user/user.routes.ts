@@ -2,6 +2,7 @@ import { Routes } from "@angular/router";
 import { authGuard } from "../auth/auth.guard";
 import { ChatbotsComponent } from "./chatbots/chatbots.component";
 import { CreateChatbotComponent } from "./create-chatbot/create-chatbot.component";
+import { SourceComponent } from "../chatbot/source/source.component";
 
 export const UserRoutes: Routes = [
   {
@@ -14,7 +15,7 @@ export const UserRoutes: Routes = [
     // canActivate: [authGuard],
     children: [
       { path: 'chatbots', component: ChatbotsComponent },
-      { path: 'create-chatbot', component: CreateChatbotComponent },
+      { path: 'create-chatbot', component: SourceComponent },
       {
         path: ':id',
         loadChildren: () =>

@@ -18,11 +18,7 @@ export class UserService {
         content: text,
         chatbot_id: "c572f65e-6438-40f1-80a1-704fe8d74ac1"
       },
-      {
-        headers: {
-          "Content-Type": "application/json"
-        }
-      }
+      { withCredentials: true }
     )
   }
 }

@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { MenuModule } from 'primeng/menu';
 import { ChatbotService } from '../../chatbot/playground/chatbot.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { FileDropComponent } from '../../file-drop/file-drop.component';
 import { UserService } from '../../user/user.service';
@@ -18,6 +18,7 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = '/assets/pdf.worker.min.mjs';
 })
 export class SourceComponent {
   router = inject(Router);
+  route = inject(ActivatedRoute);
   userService = inject(UserService);
   chatbotService = inject(ChatbotService);
 
@@ -29,6 +30,7 @@ export class SourceComponent {
   isLoadedFiles: string[] = [];
 
   ngOnInit() {
+    this.chatbotId = this.route.parent!.snapshot.paramMap.get('id')!;
     this.trainSources = [
       { label: 'Files', icon: 'pi pi-file' },
       { label: 'Text', icon: 'pi pi-align-left' },
@@ -37,21 +39,19 @@ export class SourceComponent {
     ];
   }
 
-  onCreate() {
-    this.chatbotService.createChatBot().subscribe({
-      next: (data: any) => {
-        console.log(data);
-        this.chatbotId = data.id;
-        console.log(this.chatbotId);
+  // onCreate() {
+  //   this.chatbotService.createChatBot().subscribe({
+  //     next: (data: any) => {
+  //       console.log(data);
 
-        this.router.navigate([`dashboard`, data.id]);
-        console.log(this.chatbotId);
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    });
-  }
+  //       this.router.navigate([`dashboard`, data.id]);
+  //       console.log(this.chatbotId);
+  //     },
+  //     error: (err) => {
+  //       console.log(err);
+  //     }
+  //   });
+  // }
 
   onFileDropped(files: FileList) {
 
@@ -114,7 +114,6 @@ export class SourceComponent {
   }
 
   onTrain() {
-    console.log(this.chatbotId);
     this.userService.feedText(this.chatbotId, this.extractedText).subscribe(
 
       response => {

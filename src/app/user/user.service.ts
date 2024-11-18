@@ -11,8 +11,6 @@ export class UserService {
   baseUrl = 'https://chatsource-api.onrender.com';
 
   feedText(id: string, text: string) {
-    console.log(id);
-
     return this.#httpClient.post<any>(`${this.baseUrl}/api/v1/chatbots/train`,
       {
         title: "123",

@@ -7,6 +7,7 @@ import { SettingPanelComponent } from './chatbot/setting-panel/setting-panel.com
 import { ChatbotComponent } from './chatbot/playground/chatbot.component';
 import { authGuard } from './auth/auth.guard';
 import { OAuthCallbackComponent } from './auth/o-auth-callback/o-auth-callback.component';
+import { ResetPwdComponent } from './auth/reset-pwd/reset-pwd.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -26,5 +27,6 @@ export const routes: Routes = [
       )
   },
   { path: 'account', component: AccountComponent },
-  { path: 'oauth-callback', component: OAuthCallbackComponent }
+  { path: 'oauth-callback', component: OAuthCallbackComponent },
+  { path: 'reset-password', component: ResetPwdComponent }
 ];

@@ -39,7 +39,7 @@ export class CreateChatbotComponent {
     this.chatbotService.createChatBot().subscribe({
       next: (data: any) => {
         console.log(data);
-        this.router.navigate([`dashboard/chatbot`, data.id]);
+        this.router.navigate([`dashboard`, data.id]);
       },
       error: (err) => {
         console.log(err);
@@ -91,7 +91,7 @@ export class CreateChatbotComponent {
         const page = await pdf.getPage(1);
         const textContent = await page.getTextContent();
         const pageText = textContent.items.map((item: any) => item.str).join(' ');
-
+        this.extractedText = pageText;
         console.log(pageText); // 打印頁面的文本內容
 
       }
@@ -107,7 +107,9 @@ export class CreateChatbotComponent {
   }
 
   onTrain() {
+    console.log(this.extractedText);
     this.userService.feedText(this.extractedText).subscribe(
+
       response => {
         console.log(response);
       },

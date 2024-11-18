@@ -9,14 +9,13 @@ export class UserService {
   constructor() { }
   #httpClient = inject(HttpClient);
   baseUrl = 'https://chatsource-api.onrender.com';
-  feedText(text: string) {
-    console.log('feedText');
 
+  feedText(id: string, text: string) {
     return this.#httpClient.post<any>(`${this.baseUrl}/api/v1/chatbots/train`,
       {
         title: "123",
         content: text,
-        chatbot_id: "96dcd335-837f-408d-a346-01c1946021eb"
+        chatbot_id: id
       },
       { withCredentials: true }
     )

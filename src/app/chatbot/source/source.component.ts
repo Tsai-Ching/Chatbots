@@ -25,6 +25,8 @@ export class SourceComponent {
   allowedExtensions = ['.pdf', '.txt'];
   allowMultipleFiles = false;
   extractedText: string = '';
+  chatbotId: string = '';
+  isLoadedFiles: string[] = [];
 
   ngOnInit() {
     this.trainSources = [
@@ -39,6 +41,7 @@ export class SourceComponent {
     this.chatbotService.createChatBot().subscribe({
       next: (data: any) => {
         console.log(data);
+        this.chatbotId = data.id;
         this.router.navigate([`dashboard`, data.id]);
       },
       error: (err) => {
@@ -62,6 +65,7 @@ export class SourceComponent {
             console.error('Unsupported file type:', file.type);
             break;
         }
+        this.isLoadedFiles.push(file.name);
       });
     }
   }
@@ -107,8 +111,7 @@ export class SourceComponent {
   }
 
   onTrain() {
-    console.log(this.extractedText);
-    this.userService.feedText(this.extractedText).subscribe(
+    this.userService.feedText(this.chatbotId, this.extractedText).subscribe(
 
       response => {
         console.log(response);

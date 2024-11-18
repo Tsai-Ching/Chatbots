@@ -22,6 +22,9 @@
             (onFileDropped)="onFileDropped($event)"
           ></app-file-drop>
         </div>
+        @if(isLoadedFiles.length > 0) { @for(file of isLoadedFiles) {
+        <p>Loaded Files: {{ lfile }}</p>
+        } }
       </div>
       <div class="card col-4">
         <h5>Alternate Align</h5>

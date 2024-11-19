@@ -17,7 +17,7 @@ export const UserRoutes: Routes = [
       { path: 'chatbots', component: ChatbotsComponent },
       { path: 'create-chatbot', component: SourceComponent },
       {
-        path: ':id',
+        path: 'chatbot/:id',
         loadChildren: () =>
           import('../chatbot/chatbot.route').then(m =>
             m.ChatbotRoutes)

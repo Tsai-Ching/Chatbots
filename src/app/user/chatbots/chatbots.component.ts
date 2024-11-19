@@ -7,6 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { TopbarComponent } from '../../topbar/topbar.component';
 import { ChatbotService } from '../../chatbot/playground/chatbot.service';
 import { Chatbot } from './entity/chatbot.entity';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-chatbots',
@@ -17,11 +18,8 @@ import { Chatbot } from './entity/chatbot.entity';
 })
 export class ChatbotsComponent implements OnInit {
   chatbotService = inject(ChatbotService);
+  userService = inject(UserService);
   router = inject(Router);
-  items: MenuItem[] = [
-    { label: 'Chatbots' },
-    { label: 'Settings' },
-  ];
   chatbots: Chatbot[] = [];
 
   ngOnInit(): void {
@@ -33,7 +31,7 @@ export class ChatbotsComponent implements OnInit {
   }
 
   onCreateBot() {
-    this.chatbotService.createChatBot().subscribe({
+    this.userService.createChatBot().subscribe({
       next: (data: any) => {
         console.log(data);
         this.router.navigate([`dashboard`, data.id, `source`]);

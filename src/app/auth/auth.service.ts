@@ -7,6 +7,7 @@ import { LoginEntity } from './login/entity/login-entity';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable, throwError } from 'rxjs';
 import { Params } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,18 +15,15 @@ import { Params } from '@angular/router';
 export class AuthService {
   #httpClient = inject(HttpClient)
   #cookieService = inject(CookieService)
-  baseUrl = 'https://chatsource-api.onrender.com';
-
-  constructor() { }
 
   register(data: RegisterEntity) {
-    return this.#httpClient.post(`${this.baseUrl}/api/v1/users/register`, data);
+    return this.#httpClient.post(`${environment.apiHost}/api/v1/users/register`, data);
   }
 
   /** 一般登入 */
   login(loginEntity: LoginEntity): Observable<{ access_token: string, refresh_token: string, token_type: string }> {
 
-    return this.#httpClient.post<any>(`${this.baseUrl}/api/v1/users/auth/jwt/login`,
+    return this.#httpClient.post<any>(`${environment.apiHost}/api/v1/users/auth/jwt/login`,
       `username=${loginEntity.email}&password=${encodeURIComponent(loginEntity.password)}&grant_type=password`
       , { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
       .pipe(
@@ -44,14 +42,14 @@ export class AuthService {
   }
 
   getResetEmail(email: string) {
-    return this.#httpClient.post<any>(`${this.baseUrl}/api/v1/users/forgot-password`,
+    return this.#httpClient.post<any>(`${environment.apiHost}/api/v1/users/forgot-password`,
       { email: email },
 
     );
   }
 
   resetPassword(data: { new_password: string }, token: string) {
-    return this.#httpClient.post<any>(`${this.baseUrl}/api/v1/users/reset-password`,
+    return this.#httpClient.post<any>(`${environment.apiHost}/api/v1/users/reset-password`,
       { token: token, password: data.new_password },
       {
         headers: {
@@ -72,7 +70,7 @@ export class AuthService {
   // }
 
   getGoogleLoginUrl() {
-    return this.#httpClient.get<string>(`${this.baseUrl}/api/v1/users/auth/google/authorize`,
+    return this.#httpClient.get<string>(`${environment.apiHost}/api/v1/users/auth/google/authorize`,
       {
         headers: {
           "Content-Type": "application/json"
@@ -82,17 +80,17 @@ export class AuthService {
 
   redirectToLogin(query: Params) {
     const { code, state, scope, authuser, prompt } = query;
-    const callbackUrl = `${this.baseUrl}/api/v1/users/auth/google/callback?state=${state}&code=${code}&scope=${scope}&authuser=${authuser}0&prompt=${prompt}`;
+    const callbackUrl = `${environment.apiHost}/api/v1/users/auth/google/callback?state=${state}&code=${code}&scope=${scope}&authuser=${authuser}0&prompt=${prompt}`;
     return this.#httpClient.get(callbackUrl, { withCredentials: true });
   }
 
   updateEmail(email: string) {
-    return this.#httpClient.patch<any>(`${this.baseUrl}/api/v1/users/me`,
+    return this.#httpClient.patch<any>(`${environment.apiHost}/api/v1/users/me`,
       { email: email });
   }
 
   updatePassword(password: string) {
-    return this.#httpClient.patch<any>(`${this.baseUrl}/api/v1/users/me`,
+    return this.#httpClient.patch<any>(`${environment.apiHost}/api/v1/users/me`,
       { password: password });
   }
 

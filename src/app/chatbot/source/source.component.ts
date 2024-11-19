@@ -114,7 +114,7 @@ export class SourceComponent {
   }
 
   onTrain() {
-    this.userService.feedText(this.chatbotId, this.extractedText).subscribe(
+    this.userService.trainWithText(this.chatbotId, this.extractedText).subscribe(
 
       response => {
         console.log(response);

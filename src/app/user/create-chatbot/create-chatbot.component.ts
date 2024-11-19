@@ -35,17 +35,17 @@ export class CreateChatbotComponent {
     ];
   }
 
-  onCreate() {
-    this.chatbotService.createChatBot().subscribe({
-      next: (data: any) => {
-        console.log(data);
-        this.router.navigate([`dashboard`, data.id]);
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    });
-  }
+  // onCreate() {
+  //   this.chatbotService.createChatBot().subscribe({
+  //     next: (data: any) => {
+  //       console.log(data);
+  //       this.router.navigate([`dashboard`, data.id]);
+  //     },
+  //     error: (err) => {
+  //       console.log(err);
+  //     }
+  //   });
+  // }
 
   onFileDropped(files: FileList) {
 

@@ -17,8 +17,15 @@ import { DividerModule } from 'primeng/divider';
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
-  authService = inject(AuthService)
+  authService = inject(AuthService);
   router = inject(Router);
+  items: MenuItem[] = [
+    { label: 'Chatbots', routerLink: '/dashboard/chatbots' },
+    {
+      label: 'Settings', routerLink: '/dashboard/create-chatbot'
+    },
+  ];
+
   onLogout() {
     this.authService.logout();
     this.router.navigate(['/login']);

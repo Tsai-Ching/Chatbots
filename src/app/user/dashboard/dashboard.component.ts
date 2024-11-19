@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TopbarComponent } from '../../topbar/topbar.component';
 import { MenuItem } from 'primeng/api';
 import { TabMenuModule } from 'primeng/tabmenu';
@@ -16,15 +16,21 @@ import { DividerModule } from 'primeng/divider';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
   authService = inject(AuthService);
   router = inject(Router);
+  route = inject(ActivatedRoute);
+  showDashboardMenu: boolean = false;
   items: MenuItem[] = [
     { label: 'Chatbots', routerLink: '/dashboard/chatbots' },
     {
       label: 'Settings', routerLink: '/dashboard/create-chatbot'
     },
   ];
+
+  ngOnInit(): void {
+    this.showDashboardMenu = this.route.snapshot.data['showDashboardMenu'];
+  }
 
   onLogout() {
     this.authService.logout();

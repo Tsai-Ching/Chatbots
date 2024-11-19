@@ -14,6 +14,7 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+    data: { showDashboardMenu: true },
     loadChildren: () =>
       import('./user/user.routes').then(
         m => m.UserRoutes

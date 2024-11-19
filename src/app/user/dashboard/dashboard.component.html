@@ -1,5 +1,7 @@
 <app-topbar></app-topbar>
 
+@if(showDashboardMenu) {
 <p-tabMenu [model]="items" styleclass="w-full" />
+}
 
 <router-outlet></router-outlet>

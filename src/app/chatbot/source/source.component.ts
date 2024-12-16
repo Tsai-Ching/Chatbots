@@ -28,9 +28,11 @@ export class SourceComponent {
   extractedText: string = '';
   chatbotId: string = '';
   isLoadedFiles: string[] = [];
+  isNewBot: boolean = false;
 
   ngOnInit() {
     this.chatbotId = this.route.parent!.snapshot.paramMap.get('id')!;
+    if (!this.chatbotId) this.isNewBot = true;
     this.trainSources = [
       { label: 'Files', icon: 'pi pi-file' },
       { label: 'Text', icon: 'pi pi-align-left' },
@@ -39,19 +41,20 @@ export class SourceComponent {
     ];
   }
 
-  // onCreate() {
-  //   this.chatbotService.createChatBot().subscribe({
-  //     next: (data: any) => {
-  //       console.log(data);
-
-  //       this.router.navigate([`dashboard`, data.id]);
-  //       console.log(this.chatbotId);
-  //     },
-  //     error: (err) => {
-  //       console.log(err);
-  //     }
-  //   });
-  // }
+  onCreate() {
+    this.userService.createChatBot().subscribe({
+      next: (data: any) => {
+        // console.log(data);
+        // this.router.navigate([`dashboard`, data.id]);
+        console.log(this.chatbotId);
+        this.chatbotId = data.id
+        this.onTrain()
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
 
   onFileDropped(files: FileList) {
 

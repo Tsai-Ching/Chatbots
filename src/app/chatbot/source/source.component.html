@@ -39,7 +39,7 @@
           pButton
           label="Train"
           class="block"
-          (click)="onTrain()"
+          (click)="isNewBot ? onCreate() : onTrain()"
         ></button>
       </div>
     </div>

@@ -34,7 +34,7 @@ export class ChatbotsComponent implements OnInit {
     this.userService.createChatBot().subscribe({
       next: (data: any) => {
         console.log(data);
-        this.router.navigate([`dashboard`, `source`, data.id]);
+        this.router.navigate([`dashboard`, `create-chatbot`, data.id]);
       },
       error: (err) => {
         console.log(err);

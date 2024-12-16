@@ -15,7 +15,7 @@ export const UserRoutes: Routes = [
     // canActivate: [authGuard],
     children: [
       { path: 'chatbots', component: ChatbotsComponent },
-      { path: 'create-chatbot', component: SourceComponent },
+      { path: 'create-chatbot/:id', component: SourceComponent },
       {
         path: 'chatbot/:id',
         loadChildren: () =>

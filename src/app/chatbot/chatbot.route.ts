@@ -9,3 +9,4 @@ export const ChatbotRoutes: Routes = [
   { path: 'source', component: SourceComponent },
   { path: 'chatbot-setting', component: ChatbotSettingComponent }
 ];
+1

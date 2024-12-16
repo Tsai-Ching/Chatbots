@@ -118,6 +118,7 @@ export class SourceComponent {
 
       response => {
         console.log(response);
+        this.router.navigate([`dashboard`, `chatbot`, this.chatbotId, 'playground']);
       },
       error => {
         console.error(error);

@@ -30,7 +30,7 @@ export class SourceComponent {
   isLoadedFiles: string[] = [];
 
   ngOnInit() {
-    this.chatbotId = this.route.parent!.snapshot.paramMap.get('id')!;
+    this.chatbotId = this.route.snapshot.paramMap.get('id')!;
     this.trainSources = [
       { label: 'Files', icon: 'pi pi-file' },
       { label: 'Text', icon: 'pi pi-align-left' },

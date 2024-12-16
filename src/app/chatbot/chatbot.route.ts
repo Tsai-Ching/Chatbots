@@ -6,7 +6,6 @@ import { ChatbotSettingComponent } from "./chatbot-setting/chatbot-setting.compo
 
 export const ChatbotRoutes: Routes = [
   { path: 'playground', component: ChatbotComponent },
-  { path: 'source', component: SourceComponent },
+  { path: 'source/:id', component: SourceComponent },
   { path: 'chatbot-setting', component: ChatbotSettingComponent }
 ];
-1
